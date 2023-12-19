@@ -1,9 +1,8 @@
-const { request, response } = require('express');
-const eventsModel = require('../models/event');
+import { Request, Response } from 'express';
+import eventsModel from '../models/event';
 
-const getAll = async (req = request, res = response) => {
+const getAll = async (req: Request, res: Response) => {
   try {
-    //const events = await eventsModel.find();
     const events = await eventsModel.find().populate('book').exec();
     res.status(200).json(events);
   } catch (error) {
@@ -14,7 +13,7 @@ const getAll = async (req = request, res = response) => {
   }
 }
 
-const getSearch = async (req = request, res = response) => {
+const getSearch = async (req: Request, res: Response) => {
   try {
     const search = req.query.search;
 
@@ -42,7 +41,7 @@ const getSearch = async (req = request, res = response) => {
   }
 }
 
-const create = async (req = request, res = response) => {
+const create = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     const event = await eventsModel.create(body);
@@ -56,7 +55,7 @@ const create = async (req = request, res = response) => {
   }
 }
 
-module.exports = {
+export {
   getAll,
   getSearch,
   create

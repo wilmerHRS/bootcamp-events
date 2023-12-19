@@ -1,7 +1,7 @@
-const { request, response } = require('express');
-const booksModel = require('../models/books');
+import { Request, Response } from 'express';
+import booksModel from '../models/books';
 
-const getAll = async (req = request, res = response) => {
+const getAll = async (req: Request, res: Response) => {
   try {
     const events = await booksModel.find();
     res.status(200).json(events);
@@ -13,7 +13,7 @@ const getAll = async (req = request, res = response) => {
   }
 }
 
-const create = async (req = request, res = response) => {
+const create = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     const event = await booksModel.create(body);
@@ -28,7 +28,7 @@ const create = async (req = request, res = response) => {
   }
 }
 
-module.exports = {
+export {
   getAll,
   create
 }
